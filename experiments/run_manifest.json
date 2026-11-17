@@ -1,0 +1,156 @@
+{
+  "created_at_utc": "2026-11-17T14:16:56.086523+00:00",
+  "preregistration_commit": "5b7de2b601fb331ee65cb42ecff5267046c71371",
+  "preregistration_sha256": "6d59dce9988375811176f65f6d25cdb069e78504349e1579cf2fcdc8ab4ab2fd",
+  "upstream_repository": "https://github.com/Yandex-Practicum/ap-physicalai-1",
+  "upstream_commit": "70ea0fe0e039846126bd0f87f38738b710a0d515",
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "packages": {
+    "torch": "2.14.1",
+    "jax": "0.6.2",
+    "mujoco": "3.5.0",
+    "mujoco-mjx": "3.5.0",
+    "playground": "0.1.0",
+    "rsl-rl-lib": "5.5.1",
+    "tensorboard": "2.21.0"
+  },
+  "jax_devices": [
+    "cuda:0"
+  ],
+  "torch_gpu": "NVIDIA GeForce RTX 5060 Ti",
+  "environment_config": {
+    "action_repeat": 1,
+    "action_scale": 0.04,
+    "ctrl_dt": 0.02,
+    "episode_length": 150,
+    "impl": "jax",
+    "nconmax": 49152,
+    "njmax": 128,
+    "reward_config": {
+      "scales": {
+        "box_target": 8.0,
+        "gripper_box": 4.0,
+        "no_floor_collision": 0.25,
+        "robot_target_qpos": 0.3
+      }
+    },
+    "sim_dt": 0.005
+  },
+  "resource_limits": {
+    "container_ram_gib": 6,
+    "container_memory_plus_swap_gib": 6,
+    "cpu_cores": 4,
+    "jax_gpu_fraction": 0.3,
+    "jax_preallocate": false,
+    "torch_gpu_fraction": 0.12
+  },
+  "source_sha256": {
+    "train.py": "4d48a14fa57649a8636450130fae177e61f6f5ae95ffb706ddb1616a2376baba",
+    "inference.py": "0f2efeb8ca0ebaf1b8fb37575df2e6fbd7ba62fa8cad59dc4fdb5ce9690fa02a",
+    "config.py": "93cd547cb71f9a6afe2e1d06b7fd714d59c88e637de14ea65809d5dcf62bcde9",
+    "device_utils.py": "0f3aaa2f772cddf110301f88503eac1ee817b223ed3708f99ad4a522cb1c6df6"
+  },
+  "baseline_checkpoint_sha256": "3e1c9fc9ed70b4c977d7f61c05a8f3000f3590cd3830235353fc0f281fd0e40b",
+  "baseline_type": "historical training, current paired inference",
+  "stages": [
+    {
+      "stage": "training",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "train.py",
+        "--exp_name",
+        "max_iters_201",
+        "--max_iters",
+        "201"
+      ],
+      "started_at_utc": "2026-11-17T14:16:56.149908+00:00",
+      "log": "experiment_training.log",
+      "executed_command": [
+        "/usr/bin/python3",
+        "-u",
+        "bounded_python.py",
+        "train.py",
+        "--exp_name",
+        "max_iters_201",
+        "--max_iters",
+        "201"
+      ],
+      "ended_at_utc": "2026-11-17T14:27:23.589400+00:00",
+      "wall_seconds": 627.468276657,
+      "returncode": 0
+    },
+    {
+      "stage": "baseline_inference",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "inference.py",
+        "--checkpoint",
+        "logs/baseline_1001/model_1000.pt",
+        "--episodes",
+        "10",
+        "--seed",
+        "42",
+        "--record",
+        "evidence/baseline_1001.mp4"
+      ],
+      "started_at_utc": "2026-11-17T14:27:23.589825+00:00",
+      "log": "baseline_inference.log",
+      "executed_command": [
+        "/usr/bin/python3",
+        "-u",
+        "bounded_python.py",
+        "inference.py",
+        "--checkpoint",
+        "logs/baseline_1001/model_1000.pt",
+        "--episodes",
+        "10",
+        "--seed",
+        "42",
+        "--record",
+        "evidence/baseline_1001.mp4"
+      ],
+      "ended_at_utc": "2026-11-17T14:31:08.814395+00:00",
+      "wall_seconds": 225.23492177999992,
+      "returncode": 0
+    },
+    {
+      "stage": "experiment_inference",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "inference.py",
+        "--checkpoint",
+        "logs/max_iters_201/model_200.pt",
+        "--episodes",
+        "10",
+        "--seed",
+        "42",
+        "--record",
+        "evidence/max_iters_201.mp4"
+      ],
+      "started_at_utc": "2026-11-17T14:31:08.814734+00:00",
+      "log": "experiment_inference.log",
+      "executed_command": [
+        "/usr/bin/python3",
+        "-u",
+        "bounded_python.py",
+        "inference.py",
+        "--checkpoint",
+        "logs/max_iters_201/model_200.pt",
+        "--episodes",
+        "10",
+        "--seed",
+        "42",
+        "--record",
+        "evidence/max_iters_201.mp4"
+      ],
+      "ended_at_utc": "2026-11-17T14:34:49.412560+00:00",
+      "wall_seconds": 220.606875275,
+      "returncode": 0
+    }
+  ],
+  "experiment_checkpoint_sha256": "47047fd6c94f5cad5343ad1ad017d132797d941a779fc7da11134e3359b0f727",
+  "completed_at_utc": "2026-11-17T14:34:49.417094+00:00"
+}

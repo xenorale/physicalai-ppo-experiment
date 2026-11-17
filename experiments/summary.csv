@@ -1,0 +1,3 @@
+experiment,code_change,training_command,iterations,total_steps,mean_reward,successes,grasps,episodes,eval_mean_reward,mean_final_distance_m,elapsed_seconds,checkpoint_sha256
+baseline,—,python3 train.py --exp_name my_first_run,1001,164003840,1425.81,10,10,10,1486.44,0.0071,3222,3e1c9fc9ed70b4c977d7f61c05a8f3000f3590cd3830235353fc0f281fd0e40b
+max_iters_201,—,python3 train.py --exp_name max_iters_201 --max_iters 201,201,32931840,629.2,0,0,10,575.176,0.3413,618,47047fd6c94f5cad5343ad1ad017d132797d941a779fc7da11134e3359b0f727
